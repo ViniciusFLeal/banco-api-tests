@@ -1,10 +1,12 @@
 import request from 'supertest';
 import { expect } from 'chai';
+import 'dotenv/config';
+import postLogin from '../fixtures/postLogin.json' assert { type: 'json' };
 
 describe('Login', () => {
     describe('POST /login', () => {
         it('Deve retornar 200 com um token em string quando usar credenciais validadas', async () => {
-            const resposta = await request('http://localhost:3000')
+            const resposta = await request(process.env.BASE_URL)
                 .post('/login')
                 .set('Content-Type', 'application/json')
                 .send({
@@ -12,8 +14,7 @@ describe('Login', () => {
                     'senha': '123456'
                 });
             
-                console.log(resposta.status)
-                console.log(resposta.body)
+                
 
             expect(resposta.status).to.equal(200);
             expect(resposta.body.token).to.be.a('string');
