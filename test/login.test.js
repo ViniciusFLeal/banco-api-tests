@@ -1,6 +1,7 @@
 import request from 'supertest';
 import { expect } from 'chai';
 import 'dotenv/config';
+import postLogin from '../fixtures/postLogin.json' assert { type: 'json' };
 
 describe('Login', () => {
     describe('POST /login', () => {
